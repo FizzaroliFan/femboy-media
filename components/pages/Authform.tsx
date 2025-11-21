@@ -13,16 +13,25 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useRouter } from "next/navigation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-export default function AuthForm() {
+interface AuthFormProps {
+  onLoginSuccess: () => void;
+}
+
+export default function AuthForm({onLoginSuccess}: AuthFormProps) {
   // Estado para saber se estamos carregando (útil para quando conectarmos o Supabase)
   const [loading, setLoading] = useState(false);
+  const router = useRouter()
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    // Aqui entraremos com a lógica do Supabase depois
-    console.log("Formulário enviado");
+    // Simulação de login
+    setTimeout(() => {
+      console.log("Logado!");
+      router.push("/dashboard"); // <--- CHAMA O REDIRECIONAMENTO DO PAI
+    }, 1000);
   };
 
   return (
